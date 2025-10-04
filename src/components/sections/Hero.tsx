@@ -16,7 +16,30 @@ export const Hero = () => {
       <div className="absolute inset-0 gradient-hero opacity-20" />
       
       <div className="container mx-auto px-4 z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          {/* Image on the left */}
+          <motion.div
+            className="order-2 lg:order-1 flex justify-center lg:justify-start"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="relative w-full max-w-md">
+              <div className="aspect-[3/4] rounded-2xl overflow-hidden glass-card border border-primary/20">
+                {/* Placeholder - user will replace with their image */}
+                <img
+                  src="/placeholder.svg"
+                  alt="Youssef Houssam"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Decorative gradient behind */}
+              <div className="absolute -inset-4 gradient-primary opacity-20 blur-3xl -z-10" />
+            </div>
+          </motion.div>
+
+          {/* Content on the right */}
+          <div className="order-1 lg:order-2 text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -60,7 +83,7 @@ export const Hero = () => {
             </motion.p>
 
             <motion.div
-              className="flex flex-wrap gap-4 justify-center mb-12"
+              className="flex flex-wrap gap-4 justify-center lg:justify-start mb-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
@@ -83,7 +106,7 @@ export const Hero = () => {
             </motion.div>
 
             <motion.div
-              className="flex gap-6 justify-center"
+              className="flex gap-6 justify-center lg:justify-start"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.2 }}
@@ -115,15 +138,16 @@ export const Hero = () => {
               </motion.a>
             </motion.div>
           </motion.div>
-
-          <motion.div
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-          >
-            <ArrowDown className="w-6 h-6 text-primary" />
-          </motion.div>
+          </div>
         </div>
+
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          <ArrowDown className="w-6 h-6 text-primary" />
+        </motion.div>
       </div>
     </section>
   );
