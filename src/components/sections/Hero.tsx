@@ -28,7 +28,7 @@ export const Hero = () => {
               <div className="aspect-[3/4] rounded-2xl overflow-hidden glass-card border border-primary/20">
                 {/* Placeholder - user will replace with their image */}
                 <img
-                  src="/placeholder.svg"
+                  src="/youssef.jpg"
                   alt="Youssef Houssam"
                   className="w-full h-full object-cover"
                 />
@@ -122,7 +122,7 @@ export const Hero = () => {
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.2, rotate: -5 }}
-                href="https://linkedin.com/in/youssefhoussam"
+                href="https://www.linkedin.com/in/youssef-houssam-66b02b357/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"

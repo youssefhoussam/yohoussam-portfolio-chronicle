@@ -11,7 +11,7 @@ const projects = [
     fullDescription: "Application web permettant la gestion multi-sites d'inventaires avec isolation complète des données, système d'alertes automatiques, traçabilité complète et exports avancés. Architecture RBAC avec permissions granulaires et tableaux de bord adaptatifs.",
     technologies: ["Laravel 12", "Vue.js 3", "MySQL", "Inertia.js", "Tailwind CSS", "UML"],
     category: "Backend",
-    github: "#",
+    github: "https://github.com/youssefhoussam/Gestion-de-Stock-app",
     demo: "#",
   },
   {
@@ -20,8 +20,8 @@ const projects = [
     fullDescription: "Plateforme d'aide à la gestion financière pour TPE avec intégration IA (Gemini) pour analyse financière et recommandations stratégiques. Interface responsive avec visualisation des données en temps réel.",
     technologies: ["Next.js", "React", "Firebase", "Tailwind CSS", "Gemini LLM"],
     category: "Data",
-    github: "#",
-    demo: "#",
+    github: "https://github.com/youssefhoussam/Trackify",
+    demo: "https://trackify-grey.vercel.app/dashbord",
   },
   {
     title: "EMSI Smart Presence",
@@ -38,7 +38,7 @@ const projects = [
     fullDescription: "Plateforme e-commerce pour commerçants avec gestion des produits physiques, stocks limités/illimités, interface d'administration et suivi des commandes.",
     technologies: ["Python", "Django", "SQLite", "HTML", "CSS", "JavaScript", "Bootstrap"],
     category: "Backend",
-    github: "#",
+    github: "https://github.com/youssefhoussam/projet-python",
     demo: "#",
   },
 ];

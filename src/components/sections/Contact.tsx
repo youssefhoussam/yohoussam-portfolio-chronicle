@@ -118,61 +118,7 @@ export const Contact = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <form onSubmit={handleSubmit} className="glass-card p-8 space-y-6">
-              <div className="relative">
-                <Input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="peer glass-card border-primary/30 focus:border-primary pt-6"
-                  placeholder=" "
-                />
-                <label className="absolute left-4 top-2 text-xs text-muted-foreground transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs">
-                  Nom complet
-                </label>
-              </div>
-
-              <div className="relative">
-                <Input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="peer glass-card border-primary/30 focus:border-primary pt-6"
-                  placeholder=" "
-                />
-                <label className="absolute left-4 top-2 text-xs text-muted-foreground transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs">
-                  Email
-                </label>
-              </div>
-
-              <div className="relative">
-                <Textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="peer glass-card border-primary/30 focus:border-primary pt-6 resize-none"
-                  placeholder=" "
-                />
-                <label className="absolute left-4 top-2 text-xs text-muted-foreground transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs">
-                  Message
-                </label>
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full gradient-primary text-white border-0 hover:opacity-90 transition-opacity group"
-                size="lg"
-              >
-                <Send className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
-                Envoyer le message
-              </Button>
-            </form>
+        
           </motion.div>
         </div>
       </div>

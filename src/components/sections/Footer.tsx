@@ -33,7 +33,7 @@ export const Footer = () => {
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.2, rotate: -5 }}
-                href="https://linkedin.com/in/youssefhoussam"
+                href="https://www.linkedin.com/in/youssef-houssam-66b02b357/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="glass-card p-3 hover:bg-primary/10 transition-colors"
