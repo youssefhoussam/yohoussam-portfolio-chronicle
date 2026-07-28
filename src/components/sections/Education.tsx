@@ -5,10 +5,16 @@ import { GraduationCap, Award } from "lucide-react";
 
 const education = [
   {
-    degree: "Cycle d'Ingénieur en Informatique",
+    degree: "State Engineering Degree — Computer Science",
     school: "EMSI Casablanca",
-    period: "2020 - 2025",
-    description: "Spécialisation en développement logiciel, architecture des systèmes et cybersécurité",
+    period: "2021 — 2026",
+    description: "Specialization in Software Engineering and Networks, with a strong focus on system architecture and applied software development.",
+  },
+  {
+    degree: "Baccalaureate — Physical Sciences",
+    school: "Lycée Taha Hussein",
+    period: "2021",
+    description: "Completed in Casablanca with a strong scientific foundation.",
   },
 ];
 
@@ -49,7 +55,7 @@ export const Education = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            Formation & <span className="text-gradient">Certifications</span>
+            Education & <span className="text-gradient">Certifications</span>
           </h2>
           <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
         </motion.div>
@@ -64,7 +70,7 @@ export const Education = () => {
               className="text-2xl font-display font-semibold mb-8 flex items-center gap-2"
             >
               <GraduationCap className="w-8 h-8 text-primary" />
-              Formation
+              Education
             </motion.h3>
 
             {education.map((item, index) => (

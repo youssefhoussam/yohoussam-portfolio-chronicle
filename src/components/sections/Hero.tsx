@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, MapPin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import youssefPic from "@/assets/youssef.jpg"; // ✅ Import the image
+import youssefPic from "@/assets/youssef.jpg";
+
+const quickFacts = ["Open to relocation", "English-first focus", "Casablanca, Morocco"];
 
 export const Hero = () => {
   const scrollToContact = () => {
@@ -13,143 +15,85 @@ export const Hero = () => {
   };
 
   return (
-    <section
-      id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
-    >
+    <section id="hero" className="relative min-h-screen overflow-hidden pt-24 pb-16">
       <div className="absolute inset-0 gradient-hero opacity-20" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(45,212,191,0.16),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.12),transparent_35%)]" />
 
-      <div className="container mx-auto px-4 z-10">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-          {/* Image on the left */}
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <motion.div
-            className="order-2 lg:order-1 flex justify-center lg:justify-start"
+            className="order-2 flex justify-center lg:order-1 lg:justify-start"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
             <div className="relative w-full max-w-md">
-              <div className="aspect-[3/4] rounded-2xl overflow-hidden glass-card border border-primary/20">
-                <img
-                  src={youssefPic} // ✅ Use imported image
-                  alt="Youssef Houssam"
-                  className="w-full h-full object-cover"
-                />
+              <div className="absolute -inset-6 rounded-[2rem] bg-primary/20 blur-3xl" />
+              <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] border border-primary/20 bg-background/70 shadow-[0_25px_80px_rgba(0,0,0,0.35)] backdrop-blur">
+                <img src={youssefPic} alt="Youssef Houssam" className="h-full w-full object-cover" />
               </div>
-              <div className="absolute -inset-4 gradient-primary opacity-20 blur-3xl -z-10" />
             </div>
           </motion.div>
 
-          {/* Content on the right */}
-          <div className="order-1 lg:order-2 text-center lg:text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <motion.h1
-                className="text-5xl md:text-7xl font-display font-bold mb-6"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Youssef <span className="text-gradient">Houssam</span>
-              </motion.h1>
+          <motion.div
+            className="order-1 text-center lg:order-2 lg:text-left"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+              <Sparkles className="h-4 w-4" />
+              Software Engineer — Backend & AI Systems
+            </div>
 
-              <motion.h2
-                className="text-2xl md:text-4xl font-display mb-4 text-muted-foreground"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                Ingénieur Logiciel
-              </motion.h2>
+            <h1 className="mb-6 text-5xl font-bold leading-tight md:text-7xl">
+              Youssef <span className="text-gradient">Houssam</span>
+            </h1>
 
-              <motion.p
-                className="text-lg md:text-xl mb-8 text-muted-foreground max-w-2xl mx-auto"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                Backend • Data • Cybersécurité
-              </motion.p>
+            <p className="mb-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
+              State Engineer in Computer Science (EMSI 2026) with hands-on experience building production-grade backend systems and AI platforms. Specialized in Spring Boot microservices and RAG-based AI infrastructure.
+            </p>
 
-              <motion.p
-                className="text-base md:text-lg mb-12 text-muted-foreground/80 max-w-3xl mx-auto"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              >
-                Étudiant en 5ème année à EMSI, passionné par le développement backend et
-                l'architecture logicielle. À la recherche d'un stage PFE pour approfondir
-                mes compétences techniques.
-              </motion.p>
+            <div className="mb-10 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+              {quickFacts.map((fact) => (
+                <span key={fact} className="rounded-full border border-border/70 bg-background/60 px-3 py-2 text-sm text-muted-foreground">
+                  {fact}
+                </span>
+              ))}
+            </div>
 
-              <motion.div
-                className="flex flex-wrap gap-4 justify-center lg:justify-start mb-12"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1 }}
-              >
-                <Button
-                  size="lg"
-                  onClick={scrollToContact}
-                  className="gradient-primary text-white border-0 hover:opacity-90 transition-opacity"
-                >
-                  Me contacter
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={scrollToProjects}
-                  className="glass-card border-primary/50 hover:border-primary hover:bg-primary/10"
-                >
-                  Voir mes projets
-                </Button>
-              </motion.div>
+            <div className="mb-10 flex flex-wrap justify-center gap-4 lg:justify-start">
+              <Button size="lg" onClick={scrollToContact} className="gradient-primary border-0 text-white">
+                Let&apos;s connect
+              </Button>
+              <Button size="lg" variant="outline" onClick={scrollToProjects} className="glass-card border-primary/40 hover:border-primary hover:bg-primary/10">
+                Explore projects
+              </Button>
+            </div>
 
-              <motion.div
-                className="flex gap-6 justify-center lg:justify-start"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
-              >
-                <motion.a
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  href="https://github.com/youssefhoussam"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Github className="w-6 h-6" />
-                </motion.a>
-                <motion.a
-                  whileHover={{ scale: 1.2, rotate: -5 }}
-                  href="https://www.linkedin.com/in/youssef-houssam-66b02b357/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Linkedin className="w-6 h-6" />
-                </motion.a>
-                <motion.a
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  href="mailto:youssefhoussam88@gmail.com"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Mail className="w-6 h-6" />
-                </motion.a>
-              </motion.div>
-            </motion.div>
-          </div>
+            <div className="mb-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+              <a href="https://github.com/youssefhoussam" target="_blank" rel="noreferrer" className="flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-4 py-2 text-sm text-muted-foreground transition hover:border-primary hover:text-primary">
+                <Github className="h-4 w-4" /> GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/youssef-houssam-66b02b357/" target="_blank" rel="noreferrer" className="flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-4 py-2 text-sm text-muted-foreground transition hover:border-primary hover:text-primary">
+                <Linkedin className="h-4 w-4" /> LinkedIn
+              </a>
+              <a href="mailto:youssefhoussam88@gmail.com" className="flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-4 py-2 text-sm text-muted-foreground transition hover:border-primary hover:text-primary">
+                <Mail className="h-4 w-4" /> Email
+              </a>
+            </div>
+
+            <div className="rounded-2xl border border-primary/20 bg-background/60 p-4 text-sm text-muted-foreground shadow-[0_20px_60px_rgba(0,0,0,0.18)] backdrop-blur">
+              <div className="flex items-center gap-2 font-medium text-foreground">
+                <MapPin className="h-4 w-4 text-primary" /> Casablanca, Morocco
+              </div>
+              <p className="mt-2">Seeking a full-time role in an English-first environment, with openness to relocation and remote-friendly teams.</p>
+            </div>
+          </motion.div>
         </div>
 
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-        >
-          <ArrowDown className="w-6 h-6 text-primary" />
+        <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2" animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
+          <ArrowDown className="h-6 w-6 text-primary" />
         </motion.div>
       </div>
     </section>

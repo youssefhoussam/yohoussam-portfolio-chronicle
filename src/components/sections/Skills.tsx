@@ -1,118 +1,53 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 
 const skillCategories = [
   {
-    category: "Backend",
-    skills: [
-      { name: "Java & Spring Boot", level: 90 },
-      { name: "PHP & Laravel", level: 85 },
-      { name: "Python & Django", level: 80 },
-      { name: "C# & ASP.NET Core", level: 75 },
-      { name: "REST API", level: 90 },
-    ],
+    category: "Backend & Frameworks",
+    skills: ["Java", "Spring Boot", "Microservices", "Python", "FastAPI", "Django", "Laravel", "C#", "ASP.NET Core"],
+  },
+  {
+    category: "AI & Data",
+    skills: ["RAG pipelines", "LLM integration", "Vector search", "BM25", "Graph RAG", "LLM-as-a-Judge", "Docling", "vLLM", "Milvus"],
   },
   {
     category: "Frontend",
-    skills: [
-      { name: "Vue.js", level: 85 },
-      { name: "React & Next.js", level: 80 },
-      { name: "TypeScript", level: 85 },
-      { name: "Tailwind CSS", level: 90 },
-    ],
+    skills: ["Vue.js", "React", "Next.js", "JavaScript", "TypeScript", "Tailwind CSS"],
   },
   {
-    category: "Bases de données",
-    skills: [
-      { name: "MySQL", level: 90 },
-      { name: "PostgreSQL", level: 85 },
-      { name: "MongoDB", level: 80 },
-      { name: "Firebase", level: 85 },
-      { name: "Oracle PL/SQL", level: 75 },
-    ],
-  },
-  {
-    category: "DevOps & Cloud",
-    skills: [
-      { name: "Docker", level: 80 },
-      { name: "Git & GitHub", level: 90 },
-      { name: "AWS", level: 70 },
-      { name: "Azure", level: 70 },
-      { name: "CI/CD", level: 75 },
-    ],
+    category: "Data & Infrastructure",
+    skills: ["MySQL", "PostgreSQL", "MongoDB", "Firebase", "Oracle PL/SQL", "Docker", "Git", "GitHub", "Azure", "CI/CD"],
   },
 ];
-
-const SkillBar = ({ skill, index, isInView }: { skill: { name: string; level: number }; index: number; isInView: boolean }) => {
-  const [displayLevel, setDisplayLevel] = useState(0);
-
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => {
-        setDisplayLevel(skill.level);
-      }, index * 100);
-      return () => clearTimeout(timer);
-    }
-  }, [isInView, skill.level, index]);
-
-  return (
-    <div className="mb-6">
-      <div className="flex justify-between mb-2">
-        <span className="text-sm font-medium">{skill.name}</span>
-        <span className="text-sm text-primary">{displayLevel}%</span>
-      </div>
-      <div className="h-2 bg-secondary rounded-full overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: isInView ? `${skill.level}%` : 0 }}
-          transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
-          className="h-full gradient-primary rounded-full"
-        />
-      </div>
-    </div>
-  );
-};
 
 export const Skills = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="skills" className="py-20 relative" ref={ref}>
+    <section id="skills" className="relative py-20" ref={ref}>
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            Mes <span className="text-gradient">Compétences</span>
+        <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="mb-16 text-center">
+          <p className="mb-3 text-sm uppercase tracking-[0.35em] text-primary">Skills</p>
+          <h2 className="mb-4 text-4xl font-bold md:text-5xl">
+            Tools and stack for <span className="text-gradient">modern delivery</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          <div className="mx-auto mb-6 h-1 w-20 rounded-full bg-primary" />
+          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">A practical mix of backend architecture, AI engineering, and modern web tooling.</p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2">
           {skillCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={category.category}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: categoryIndex * 0.1 }}
-              className="glass-card p-8"
-            >
-              <h3 className="text-2xl font-display font-semibold mb-6 text-gradient">
-                {category.category}
-              </h3>
-              {category.skills.map((skill, skillIndex) => (
-                <SkillBar
-                  key={skill.name}
-                  skill={skill}
-                  index={skillIndex}
-                  isInView={isInView}
-                />
-              ))}
+            <motion.div key={category.category} initial={{ opacity: 0, y: 40 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: categoryIndex * 0.1 }} whileHover={{ y: -6, scale: 1.01 }} className="glass-card p-8">
+              <h3 className="mb-6 text-2xl font-semibold text-gradient">{category.category}</h3>
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill) => (
+                  <span key={skill} className="rounded-full border border-primary/20 bg-primary/10 px-3 py-2 text-sm text-muted-foreground">
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>

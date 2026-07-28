@@ -5,18 +5,38 @@ import { Briefcase, Calendar } from "lucide-react";
 
 const experiences = [
   {
-    title: "Stage Ingénieur Full-Stack",
-    company: "OCP Maintenance Solutions",
-    location: "Casablanca, Maroc",
-    period: "Juillet - Septembre 2025",
+    title: "AI & Backend Engineering Intern — PFE",
+    company: "OCP Solutions",
+    location: "Casablanca, Morocco",
+    period: "February 2026 — July 2026",
     description: [
-      "Développement de StockMaster, application web SaaS multi-tenant de gestion d'inventaire",
-      "Architecture multi-tenant avec isolation des données pour 4+ sites industriels",
-      "Système de contrôle d'accès basé sur les rôles (RBAC) à 3 niveaux",
-      "Alertes automatiques en temps réel et exports avancés (Excel, PDF, CSV)",
-      "Audit trail complet pour traçabilité et conformité réglementaire",
+      "Designed a four-layer modular RAG platform (SDK, Engine, Pipeline, Use Cases) deployed in production.",
+      "Built the BYOM abstraction framework with five abstract base classes for full component swappability.",
+      "Implemented hybrid retrieval (semantic + BM25, RRF, Small-to-Big) and Graph RAG extension.",
+      "Developed an LLM-as-a-Judge evaluation module with automated PASS/FAIL scoring.",
     ],
-    technologies: ["Laravel 12", "Vue.js 3", "MySQL", "Inertia.js", "Tailwind CSS", "Laravel Sanctum"],
+    technologies: ["Python", "Docling", "Milvus", "MinIO", "vLLM", "Gradio", "NetworkX"],
+  },
+  {
+    title: "Full-Stack Engineering Intern",
+    company: "OCP Maintenance Solutions",
+    location: "Casablanca, Morocco",
+    period: "July 2025 — September 2025",
+    description: [
+      "Built StockMaster, a multi-tenant SaaS inventory platform for 4+ industrial sites.",
+      "Implemented 3-level RBAC, real-time alerts, audit trail, and advanced exports.",
+    ],
+    technologies: ["Laravel 12", "Vue.js 3", "MySQL", "Inertia.js", "Tailwind CSS"],
+  },
+  {
+    title: "Software Development Intern",
+    company: "EMSI Research Lab",
+    location: "Casablanca, Morocco",
+    period: "July 2024",
+    description: [
+      "Built EmsiShop, an e-commerce platform with product management, stock control, and order tracking.",
+    ],
+    technologies: ["Python", "Django", "SQLite", "Bootstrap"],
   },
 ];
 
@@ -25,51 +45,41 @@ export const Experience = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" className="py-20 relative" ref={ref}>
+    <section id="experience" className="relative py-20" ref={ref}>
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            Mon <span className="text-gradient">Expérience</span>
+        <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }} className="mb-16 text-center">
+          <p className="mb-3 text-sm uppercase tracking-[0.35em] text-primary">Experience</p>
+          <h2 className="mb-4 text-4xl font-bold md:text-5xl">
+            A timeline of <span className="text-gradient">hands-on work</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          <div className="mx-auto h-1 w-20 rounded-full bg-primary" />
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="mx-auto max-w-5xl">
           {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="relative pl-8 pb-12 border-l-2 border-primary/30 last:pb-0"
-            >
-              <div className="absolute left-0 top-0 -translate-x-1/2 w-4 h-4 rounded-full bg-primary animate-pulse-glow" />
-              
-              <div className="glass-card p-8 hover:scale-[1.02] transition-transform duration-300">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="glass-card p-3">
-                    <Briefcase className="w-6 h-6 text-primary" />
+            <motion.div key={exp.title} initial={{ opacity: 0, x: -40 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, delay: index * 0.16 }} className="relative mb-8 border-l-2 border-primary/30 pl-8 pb-6 last:pb-0">
+              <div className="absolute left-0 top-0 h-4 w-4 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_0_8px_rgba(45,212,191,0.16)]" />
+
+              <div className="glass-card p-8 transition-transform duration-300 hover:-translate-y-1">
+                <div className="mb-4 flex items-start gap-4">
+                  <div className="rounded-2xl border border-primary/20 bg-primary/10 p-3">
+                    <Briefcase className="h-6 w-6 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-display font-semibold mb-2">{exp.title}</h3>
-                    <p className="text-lg text-primary mb-1">{exp.company}</p>
-                    <p className="text-sm text-muted-foreground mb-2">{exp.location}</p>
+                    <h3 className="mb-2 text-2xl font-semibold">{exp.title}</h3>
+                    <p className="mb-1 text-lg text-primary">{exp.company}</p>
+                    <p className="mb-2 text-sm text-muted-foreground">{exp.location}</p>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Calendar className="w-4 h-4" />
+                      <Calendar className="h-4 w-4" />
                       {exp.period}
                     </div>
                   </div>
                 </div>
 
-                <ul className="space-y-2 mb-6">
+                <ul className="mb-6 space-y-2 text-muted-foreground">
                   {exp.description.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-muted-foreground">
-                      <span className="text-primary mt-1">•</span>
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="mt-1 text-primary">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -77,10 +87,7 @@ export const Experience = () => {
 
                 <div className="flex flex-wrap gap-2">
                   {exp.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="glass px-3 py-1 text-sm text-primary border border-primary/30 rounded-full"
-                    >
+                    <span key={tech} className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm text-primary">
                       {tech}
                     </span>
                   ))}
