@@ -3,32 +3,33 @@
 @tailwind utilities;
 
 /*
-  Design system: deep ink, warm paper, and two signal colours, one per track.
-  Spring Boot / backend = lime (#a3e635), AI / RAG = violet (#a78bfa).
+  Design system: warm ink, warm paper, and a single accent: amber (#f5a524),
+  the colour of classic terminal phosphor. Headlines are heavy and tight
+  (Inter Tight 800); everything else stays quiet so the accent does the work.
   shadcn tokens are kept (HSL) so the ui/ primitives still render correctly.
 */
 
 @layer base {
   :root {
-    --background: 228 25% 3%;
-    --foreground: 45 12% 92%;
-    --card: 228 20% 6%;
-    --card-foreground: 45 12% 92%;
-    --popover: 228 20% 6%;
-    --popover-foreground: 45 12% 92%;
-    --primary: 83 78% 55%;
-    --primary-foreground: 228 25% 4%;
-    --secondary: 228 12% 12%;
-    --secondary-foreground: 45 12% 92%;
-    --muted: 228 12% 12%;
-    --muted-foreground: 222 6% 58%;
-    --accent: 255 92% 76%;
-    --accent-foreground: 228 25% 4%;
+    --background: 30 11% 4%;
+    --foreground: 42 33% 94%;
+    --card: 30 8% 7%;
+    --card-foreground: 42 33% 94%;
+    --popover: 30 8% 7%;
+    --popover-foreground: 42 33% 94%;
+    --primary: 37 91% 55%;
+    --primary-foreground: 30 11% 4%;
+    --secondary: 30 6% 12%;
+    --secondary-foreground: 42 33% 94%;
+    --muted: 30 6% 12%;
+    --muted-foreground: 40 6% 61%;
+    --accent: 37 91% 55%;
+    --accent-foreground: 30 11% 4%;
     --destructive: 0 72% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 228 10% 15%;
-    --input: 228 10% 15%;
-    --ring: 83 78% 55%;
+    --border: 30 6% 14%;
+    --input: 30 6% 14%;
+    --ring: 37 91% 55%;
     --radius: 1rem;
     color-scheme: dark;
   }
@@ -38,22 +39,35 @@
   }
 
   html {
+    /* framer-motion measures scroll-linked sections relative to the root, which must be positioned. */
+    position: relative;
     -webkit-text-size-adjust: 100%;
-    background: #06070a;
+    background: #0a0908;
   }
 
   body {
     @apply bg-ink font-sans text-paper antialiased;
-    font-feature-settings: "ss01", "cv11";
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* Headlines: heavy, tight, upright. Emphasis is colour, never italics. */
+  .font-display {
+    font-weight: 800;
+    letter-spacing: -0.035em;
+  }
+  h1 em,
+  h2 em,
+  h3 em {
+    font-style: normal;
   }
 
   ::selection {
-    background: #a3e635;
-    color: #06070a;
+    background: #f5a524;
+    color: #0a0908;
   }
 
   :focus-visible {
-    outline: 2px solid #a3e635;
+    outline: 2px solid #f5a524;
     outline-offset: 3px;
   }
 
@@ -62,15 +76,15 @@
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #06070a;
+    background: #0a0908;
   }
   ::-webkit-scrollbar-thumb {
-    background: #1c2029;
-    border: 2px solid #06070a;
+    background: #24211d;
+    border: 2px solid #0a0908;
     border-radius: 999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #2b3140;
+    background: #3a352e;
   }
 }
 
@@ -79,31 +93,38 @@
     @apply mx-auto w-full max-w-[1180px] px-5 sm:px-8 xl:px-24 2xl:px-10;
   }
 
+  /* Pipeline sticky stage: wider than the shell so the visual has room. */
+  .stage {
+    @apply mx-auto w-full max-w-[1320px] px-5 sm:px-8 xl:pl-28 xl:pr-12;
+  }
+
+  /* On wide screens the journey rail sits on the left: keep content clear of it. */
+  @media (min-width: 1280px) {
+    .shell {
+      padding-left: max(6rem, calc(250px - (100vw - 1180px) / 2));
+    }
+    .stage {
+      padding-left: max(7rem, calc(250px - (100vw - 1320px) / 2));
+    }
+  }
+
   .panel {
-    @apply rounded-[20px] border border-white/[0.07] bg-[#0a0c11]/[0.88];
+    @apply rounded-[20px] border border-white/[0.07] bg-[#121110]/[0.9];
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.04) inset,
-      0 30px 80px -40px rgba(0, 0, 0, 0.8);
+      0 30px 80px -40px rgba(0, 0, 0, 0.85);
   }
 
   .btn-primary {
-    @apply inline-flex h-10 items-center gap-2 rounded-full bg-spring px-4 text-[14px] font-medium text-ink transition hover:bg-[#b7f25a] active:scale-[0.98];
+    @apply inline-flex h-10 items-center gap-2 rounded-full bg-signal px-4 text-[14px] font-semibold text-ink transition hover:bg-[#ffb84a] active:scale-[0.98];
   }
 
   .btn-ghost {
-    @apply inline-flex h-10 items-center gap-2 rounded-full border border-white/10 bg-ink/40 px-4 text-[14px] text-paper/85 transition hover:border-white/25 hover:text-paper active:scale-[0.98];
+    @apply inline-flex h-10 items-center gap-2 rounded-full border border-white/10 bg-ink/40 px-4 text-[14px] font-medium text-paper/85 transition hover:border-white/25 hover:text-paper active:scale-[0.98];
   }
 
   .kbd {
     @apply inline-flex h-[18px] min-w-[18px] items-center justify-center rounded border border-white/15 bg-white/[0.04] px-1 font-mono text-[10px] leading-none text-paper/70;
-  }
-
-  .text-tracks {
-    background-image: linear-gradient(100deg, #a3e635 0%, #5eead4 38%, #a78bfa 78%);
-    background-image: linear-gradient(in oklch 100deg, #a3e635 0%, #a78bfa 85%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
   }
 }
 
@@ -111,11 +132,42 @@
   .animate-blink {
     animation: blink 1.1s steps(1, end) infinite;
   }
+
+  /* A slow amber pulse for elements that must be noticed (terminal CTA, guide hint). */
+  .animate-beacon {
+    animation: beacon 2.4s ease-out infinite;
+  }
+
+  .animate-nudge {
+    animation: nudge 1.8s ease-in-out infinite;
+  }
 }
 
 @keyframes blink {
   50% {
     opacity: 0;
+  }
+}
+
+@keyframes beacon {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 165, 36, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(245, 165, 36, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 165, 36, 0);
+  }
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
   }
 }
 
@@ -127,7 +179,7 @@
 
 /* Identity card scanline */
 .scanline {
-  background: linear-gradient(180deg, transparent, rgba(163, 230, 53, 0.12) 60%, rgba(163, 230, 53, 0.35) 98%, transparent);
+  background: linear-gradient(180deg, transparent, rgba(245, 165, 36, 0.1) 60%, rgba(245, 165, 36, 0.32) 98%, transparent);
   transform: translateY(-110%);
 }
 .group:hover .scanline {
@@ -147,10 +199,10 @@
     border-color 0.3s;
 }
 .group:hover .deploy-card {
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(245, 165, 36, 0.35);
 }
 .spotlight {
-  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent, #a3e635) 14%, transparent), transparent 60%);
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(245, 165, 36, 0.1), transparent 60%);
 }
 
 /* Service mesh */
@@ -184,7 +236,7 @@
 
 /* Konami debug mode: x-ray every component */
 html.debug [data-debug] {
-  outline: 1px dashed rgba(163, 230, 53, 0.55);
+  outline: 1px dashed rgba(245, 165, 36, 0.55);
   outline-offset: -1px;
   position: relative;
 }
@@ -195,12 +247,12 @@ html.debug [data-debug]::before {
   right: 0;
   z-index: 50;
   padding: 2px 6px;
-  background: #a3e635;
-  color: #06070a;
+  background: #f5a524;
+  color: #0a0908;
   font: 600 10px/1.4 "JetBrains Mono", ui-monospace, monospace;
 }
 html.debug .panel {
-  outline: 1px dotted rgba(167, 139, 250, 0.6);
+  outline: 1px dotted rgba(244, 241, 234, 0.4);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -104,7 +104,7 @@ export function BootSequence() {
       exit={{ opacity: 0, transition: { duration: reduce ? 0 : 0.7, ease: [0.4, 0, 0.2, 1] } }}
     >
       <div className="w-full max-w-2xl font-mono text-[12px] leading-relaxed sm:text-[13px]">
-        <pre aria-hidden className="mb-1 text-[11px] leading-[1.15] text-spring sm:text-[13px]">
+        <pre aria-hidden className="mb-1 text-[11px] leading-[1.15] text-signal sm:text-[13px]">
           {BANNER.join("\n")}
         </pre>
         <p className="mb-6 text-dim">
@@ -116,15 +116,15 @@ export function BootSequence() {
           {lines.slice(0, shown).map((line, i) => (
             <li key={line.tag} className="flex gap-3 text-dim">
               <span className="shrink-0 tabular-nums text-white/25">[{((stamps[i] - t0) / 1000).toFixed(3).padStart(7, " ")}]</span>
-              <span className="w-[4.5rem] shrink-0 text-neural">{line.tag}</span>
+              <span className="w-[4.5rem] shrink-0 text-signal">{line.tag}</span>
               <span className="min-w-0 text-paper/80">{line.text}</span>
             </li>
           ))}
           {ready !== null && (
             <li className="flex gap-3">
               <span className="shrink-0 tabular-nums text-white/25">[{((ready - t0) / 1000).toFixed(3).padStart(7, " ")}]</span>
-              <span className="w-[4.5rem] shrink-0 text-spring">ready</span>
-              <span className="text-spring">Started YoussefHoussam in {(ready / 1000).toFixed(3)} seconds</span>
+              <span className="w-[4.5rem] shrink-0 text-signal">ready</span>
+              <span className="text-signal">Started YoussefHoussam in {(ready / 1000).toFixed(3)} seconds</span>
             </li>
           )}
         </ol>
@@ -132,7 +132,7 @@ export function BootSequence() {
         {asking ? (
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-8">
             <p id="boot-question" className="mb-4 text-paper">
-              <span className="text-spring">❯</span> who&apos;s exploring today?
+              <span className="text-signal">❯</span> who&apos;s exploring today?
             </p>
             <div role="group" aria-labelledby="boot-question" className="grid gap-2 sm:grid-cols-3">
               {PERSONA_ORDER.map((persona, i) => (
@@ -140,7 +140,7 @@ export function BootSequence() {
                   key={persona}
                   ref={i === 0 ? firstOption : undefined}
                   onClick={() => finish(persona)}
-                  className="group rounded-xl border border-white/10 bg-white/[0.02] p-4 text-left transition hover:border-spring/60 hover:bg-spring/[0.06] focus-visible:border-spring/60"
+                  className="group rounded-xl border border-white/10 bg-white/[0.02] p-4 text-left transition hover:border-signal/60 hover:bg-signal/[0.06] focus-visible:border-signal/60"
                 >
                   <span className="flex items-center justify-between">
                     <span className="text-[14px] font-medium text-paper">{PERSONAS[persona].label}</span>
@@ -153,7 +153,7 @@ export function BootSequence() {
             <p className="mt-4 text-[11px] text-white/30">The site adapts to your answer. You can switch any time from the top bar.</p>
           </motion.div>
         ) : (
-          <p className="mt-6 h-4 text-spring">
+          <p className="mt-6 h-4 text-signal">
             <span className="animate-blink">▍</span>
           </p>
         )}

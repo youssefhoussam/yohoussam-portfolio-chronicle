@@ -33,6 +33,9 @@ interface SimLink {
   kind: "spine" | "leaf" | "cross";
 }
 
+const ACCENT = "#f5a524";
+const PAPER = "#f4f1ea";
+
 interface Packet {
   el: SVGCircleElement;
   hub: number;
@@ -68,7 +71,7 @@ function buildGraph(W: number, H: number, compact: boolean) {
   const cx = W / 2;
   const cy = H / 2;
   const charW = compact ? 7 : 6.6;
-  nodes.push({ id: "root", label: "youssef", kind: "root", ns: null, color: "#ecebe7", r: compact ? 17 : 20, x: cx, y: cy, vx: 0, vy: 0, fx: null, fy: null, ax: cx, ay: cy, hub: 0, lw: 0 });
+  nodes.push({ id: "root", label: "youssef", kind: "root", ns: null, color: PAPER, r: compact ? 17 : 20, x: cx, y: cy, vx: 0, vy: 0, fx: null, fy: null, ax: cx, ay: cy, hub: 0, lw: 0 });
   skillNamespaces.forEach((ns, k) => {
     const ax = anchors[k][0] * W;
     const ay = anchors[k][1] * H;
@@ -320,7 +323,7 @@ export function ServiceMesh({ selected, onRequest }: { selected: NamespaceId | n
     if (!selected || !packetsRef.current || reduce) return;
     const { nodes } = graph;
     const hub = nodes.findIndex((n) => n.id === `hub:${selected}`);
-    const color = nodes[hub]?.color ?? "#fff";
+    const color = ACCENT;
     const now = performance.now();
     nodes.forEach((n, i) => {
       if (n.kind !== "leaf" || n.ns !== selected) return;
@@ -414,8 +417,8 @@ export function ServiceMesh({ selected, onRequest }: { selected: NamespaceId | n
                 ref={(el) => {
                   linkEls.current[i] = el;
                 }}
-                stroke={lit ? graph.nodes[l.b].color : "#ffffff"}
-                strokeOpacity={lit ? 0.6 : l.kind === "cross" ? 0.06 : 0.12}
+                stroke={lit ? ACCENT : "#ffffff"}
+                strokeOpacity={lit ? 0.7 : l.kind === "cross" ? 0.07 : 0.13}
                 strokeWidth={l.kind === "spine" ? 1.4 : 1}
                 strokeDasharray={l.kind === "cross" ? "2 4" : undefined}
               />
@@ -426,6 +429,8 @@ export function ServiceMesh({ selected, onRequest }: { selected: NamespaceId | n
         <g>
           {graph.nodes.map((n, i) => {
             const dim = neighbours ? !neighbours.has(i) : selected ? n.kind === "leaf" && n.ns !== selected : false;
+            const active = n.kind !== "root" && !!selected && n.ns === selected;
+            const color = active ? ACCENT : PAPER;
             return (
               <g
                 key={n.id}
@@ -439,14 +444,15 @@ export function ServiceMesh({ selected, onRequest }: { selected: NamespaceId | n
                 style={{ opacity: dim ? 0.28 : 1, transition: "opacity 200ms" }}
               >
                 <circle r={n.r + 10} fill="transparent" />
-                {n.kind === "root" && <circle r={n.r + 7} fill="none" stroke="#ecebe7" strokeOpacity={0.15} className="mesh-orbit" />}
+                {n.kind === "root" && <circle r={n.r + 7} fill="none" stroke={ACCENT} strokeOpacity={0.35} className="mesh-orbit" />}
                 <circle
                   r={n.r}
-                  fill={n.kind === "leaf" ? n.color : "#06070a"}
-                  stroke={n.color}
-                  strokeWidth={n.kind === "leaf" ? 0 : 1.5}
+                  fill={n.kind === "leaf" ? color : "#0a0908"}
+                  fillOpacity={n.kind === "leaf" && !active ? 0.7 : 1}
+                  stroke={n.kind === "root" ? ACCENT : color}
+                  strokeWidth={n.kind === "leaf" ? 0 : n.kind === "root" ? 2 : 1.5}
                   className="mesh-dot"
-                  style={{ filter: n.kind === "leaf" ? `drop-shadow(0 0 5px ${n.color}66)` : undefined }}
+                  style={{ filter: active ? `drop-shadow(0 0 6px ${ACCENT}99)` : undefined }}
                 />
                 {n.kind === "root" && (
                   <text textAnchor="middle" dy="0.35em" className="fill-paper font-mono" fontSize={compact ? 10 : 11}>
@@ -460,7 +466,7 @@ export function ServiceMesh({ selected, onRequest }: { selected: NamespaceId | n
                     }}
                     x={n.r + 6}
                     dy="0.35em"
-                    className="fill-paper/80"
+                    className={active ? "fill-paper" : "fill-paper/75"}
                     fontSize={compact ? 12.5 : 12}
                   >
                     {n.label}
@@ -470,7 +476,7 @@ export function ServiceMesh({ selected, onRequest }: { selected: NamespaceId | n
                     y={n.r + (compact ? 15 : 17)}
                     textAnchor="middle"
                     className="font-mono uppercase"
-                    fill={n.color}
+                    fill={color}
                     fontSize={compact ? 10 : 10.5}
                     letterSpacing="0.14em"
                   >
@@ -487,7 +493,7 @@ export function ServiceMesh({ selected, onRequest }: { selected: NamespaceId | n
           className="pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-lg border border-white/10 bg-ink-2/95 px-2.5 py-1.5 text-[12px] text-paper shadow-xl"
           style={{ left: `${(hovered.x / W) * 100}%`, top: `calc(${(hovered.y / H) * 100}% - 12px)` }}
         >
-          <span className="font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: hovered.color }}>
+          <span className="font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: ACCENT }}>
             {hovered.label}
           </span>
           <span className="ml-2 text-dim">{hovered.note}</span>
@@ -507,9 +513,8 @@ export function NamespaceButtons({ selected, onRequest }: { selected: NamespaceI
           aria-pressed={selected === ns.id}
           className={cn(
             "rounded-full border px-3 py-1.5 font-mono text-[11px] transition",
-            selected === ns.id ? "text-ink" : "border-white/10 text-dim hover:border-white/25 hover:text-paper",
+            selected === ns.id ? "border-signal bg-signal text-ink" : "border-white/10 text-dim hover:border-white/25 hover:text-paper",
           )}
-          style={selected === ns.id ? { background: ns.color, borderColor: ns.color } : undefined}
         >
           GET /{ns.label}
         </button>

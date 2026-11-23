@@ -43,9 +43,9 @@ const DEPS: Dep[] = [
 
 const Tag = ({ name, children }: { name: string; children: string }) => (
   <>
-    <span className="text-neural">&lt;{name}&gt;</span>
+    <span className="text-signal">&lt;{name}&gt;</span>
     <span className="text-paper">{children}</span>
-    <span className="text-neural">&lt;/{name}&gt;</span>
+    <span className="text-signal">&lt;/{name}&gt;</span>
   </>
 );
 
@@ -55,7 +55,7 @@ function PomView({ active, setActive }: { active: number; setActive: (i: number)
       <div className="min-w-[560px] px-5 py-4">
         <p className="text-white/35">&lt;!-- pom.xml · what youssef-houssam is built on --&gt;</p>
         <p>
-          <span className="text-neural">&lt;dependencies&gt;</span>
+          <span className="text-signal">&lt;dependencies&gt;</span>
         </p>
         {DEPS.map((d, i) => (
           <button
@@ -65,11 +65,11 @@ function PomView({ active, setActive }: { active: number; setActive: (i: number)
             onClick={() => setActive(i)}
             className={cn(
               "-mx-2 block w-[calc(100%+1rem)] rounded-lg px-2 py-1 text-left transition",
-              active === i ? "bg-spring/[0.07] ring-1 ring-spring/30" : "hover:bg-white/[0.03]",
+              active === i ? "bg-signal/[0.07] ring-1 ring-signal/30" : "hover:bg-white/[0.03]",
             )}
           >
             <span className="block pl-4">
-              <span className="text-neural">&lt;dependency&gt;</span>
+              <span className="text-signal">&lt;dependency&gt;</span>
               {d.kind === "education" && <span className="ml-2 text-white/30">&lt;!-- {d.period} --&gt;</span>}
             </span>
             <span className="block pl-8">
@@ -87,12 +87,12 @@ function PomView({ active, setActive }: { active: number; setActive: (i: number)
               </span>
             )}
             <span className="block pl-4">
-              <span className="text-neural">&lt;/dependency&gt;</span>
+              <span className="text-signal">&lt;/dependency&gt;</span>
             </span>
           </button>
         ))}
         <p>
-          <span className="text-neural">&lt;/dependencies&gt;</span>
+          <span className="text-signal">&lt;/dependencies&gt;</span>
         </p>
       </div>
     </div>
@@ -107,7 +107,7 @@ function CardsView() {
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-[15px] text-paper">{d.title}</p>
-              <p className="text-[13px] text-spring">{d.issuer}</p>
+              <p className="text-[13px] text-signal">{d.issuer}</p>
             </div>
             <span className="shrink-0 font-mono text-[11px] text-dim">{d.period}</span>
           </div>
@@ -149,7 +149,7 @@ function ResolveLog({ run }: { run: number }) {
   return (
     <div className="border-t border-white/[0.06] bg-black/30 px-5 py-3 font-mono text-[11.5px] leading-relaxed" aria-live="polite">
       {lines.slice(0, count).map((l) => (
-        <p key={l} className={l.includes("SUCCESS") ? "text-spring" : l.includes("✓") ? "text-paper/80" : "text-dim"}>
+        <p key={l} className={l.includes("SUCCESS") ? "text-signal" : l.includes("✓") ? "text-paper/80" : "text-dim"}>
           {l}
         </p>
       ))}
@@ -177,7 +177,7 @@ export function Dependencies() {
             <>
               Built on
               <br />
-              <em className="text-tracks pr-2">solid dependencies.</em>
+              <em className="text-signal pr-2">solid dependencies.</em>
             </>
           }
           lead="Every Spring Boot app declares what it depends on. These are mine: a State Engineering degree and the certifications along the way."
@@ -208,7 +208,7 @@ export function Dependencies() {
               </div>
               <button
                 onClick={() => setRun((r) => r + 1)}
-                className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-spring/40 px-3 py-1 font-mono text-[11px] text-spring transition hover:bg-spring/10"
+                className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-signal/40 px-3 py-1 font-mono text-[11px] text-signal transition hover:bg-signal/10"
               >
                 <Play className="h-3 w-3" /> mvn dependency:resolve
               </button>
@@ -230,12 +230,12 @@ export function Dependencies() {
               >
                 {view === "pom" ? (
                   <>
-                    {dep.kind === "education" ? <GraduationCap className="h-6 w-6 text-spring" /> : <Award className="h-6 w-6 text-neural" />}
+                    {dep.kind === "education" ? <GraduationCap className="h-6 w-6 text-signal" /> : <Award className="h-6 w-6 text-signal" />}
                     <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">
                       {dep.kind} · {dep.period}
                     </p>
                     <h3 className="mt-2 font-display text-[30px] leading-[1.05] text-paper">{dep.title}</h3>
-                    <p className="mt-1 text-[14px] text-spring">{dep.issuer}</p>
+                    <p className="mt-1 text-[14px] text-signal">{dep.issuer}</p>
                     {dep.description && <p className="mt-3 text-[15px] leading-relaxed text-dim">{dep.description}</p>}
                     <p className="mt-5 font-mono text-[11px] text-white/30">
                       {dep.groupId}:{dep.artifactId}:{dep.version}
@@ -243,9 +243,9 @@ export function Dependencies() {
                   </>
                 ) : (
                   <>
-                    <GraduationCap className="h-6 w-6 text-spring" />
+                    <GraduationCap className="h-6 w-6 text-signal" />
                     <h3 className="mt-4 font-display text-[30px] leading-[1.05] text-paper">State Engineer, Computer Science</h3>
-                    <p className="mt-1 text-[14px] text-spring">EMSI Casablanca · 2021 — 2026</p>
+                    <p className="mt-1 text-[14px] text-signal">EMSI Casablanca · 2021 — 2026</p>
                     <p className="mt-3 text-[15px] leading-relaxed text-dim">
                       Specialized in Software Engineering and Networks, plus {certifications.length} certifications in software design,
                       design patterns, React and Python.

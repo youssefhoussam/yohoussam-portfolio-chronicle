@@ -79,13 +79,13 @@ export function SceneLayer() {
         if (index === OUTLIER_ID) {
           titleRef.current.textContent = "outlier";
           metaRef.current.textContent = "belongs to no cluster · click";
-          metaRef.current.style.color = "#fb7185";
+          metaRef.current.style.color = "#f4f1ea";
         } else {
           const chunk = chunks[index];
           const cluster = CLUSTERS[clusterIndex(chunk.cluster)];
           titleRef.current.textContent = chunk.title;
           metaRef.current.textContent = `${cluster.label} · click to retrieve`;
-          metaRef.current.style.color = cluster.color;
+          metaRef.current.style.color = "#f5a524";
         }
       }
       tip.style.opacity = "1";
@@ -148,13 +148,13 @@ export function SceneLayer() {
             </Suspense>
           </SceneBoundary>
         ) : (
-          <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_70%_40%,rgba(167,139,250,0.14),transparent_70%),radial-gradient(50%_45%_at_25%_65%,rgba(163,230,53,0.1),transparent_70%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_70%_40%,rgba(245,165,36,0.14),transparent_70%),radial-gradient(50%_45%_at_25%_65%,rgba(245,165,36,0.1),transparent_70%)]" />
         )}
       </div>
 
       {/* Legibility: darken behind the text column on wide screens, and fade the edges. */}
-      <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(6,7,10,0.82)_0%,rgba(6,7,10,0.45)_38%,transparent_62%)] lg:block" />
-      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_40%,transparent_55%,rgba(6,7,10,0.85)_100%)]" />
+      <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(10,9,8,0.84)_0%,rgba(10,9,8,0.45)_38%,transparent_62%)] lg:block" />
+      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_40%,transparent_55%,rgba(10,9,8,0.86)_100%)]" />
 
       {CLUSTERS.map((cluster, i) => (
         <div
@@ -163,7 +163,7 @@ export function SceneLayer() {
             bridge.labelEls[i] = el;
           }}
           className="absolute left-0 top-0 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.22em] opacity-0 transition-opacity duration-500"
-          style={{ color: cluster.color }}
+          style={{ color: "rgba(244,241,234,0.55)" }}
         >
           {cluster.label}
         </div>

@@ -47,7 +47,7 @@ export const experiences: Experience[] = [
       "Developed an LLM-as-a-Judge evaluation module with automated PASS/FAIL scoring.",
     ],
     technologies: ["Python", "Docling", "Milvus", "MinIO", "vLLM", "Gradio", "NetworkX"],
-    color: "#a78bfa",
+    color: "#f5a524",
   },
   {
     id: "ocp-maintenance",
@@ -61,7 +61,7 @@ export const experiences: Experience[] = [
       "Implemented 3-level RBAC, real-time alerts, an audit trail, and advanced exports.",
     ],
     technologies: ["Laravel 12", "Vue.js 3", "MySQL", "Inertia.js", "Tailwind CSS"],
-    color: "#5eead4",
+    color: "#f5a524",
   },
   {
     id: "emsi-lab",
@@ -72,7 +72,7 @@ export const experiences: Experience[] = [
     period: "Jul 2024",
     highlights: ["Built EmsiShop, an e-commerce platform with product management, stock control, and order tracking."],
     technologies: ["Python", "Django", "SQLite", "Bootstrap"],
-    color: "#7dd3fc",
+    color: "#f5a524",
   },
 ];
 
@@ -175,7 +175,7 @@ export const skillNamespaces: SkillNamespace[] = [
     id: "backend",
     label: "backend",
     title: "Backend & frameworks",
-    color: "#a3e635",
+    color: "#e9e2d4",
     skills: [
       { name: "Spring Boot", note: "4-service incubation platform" },
       { name: "Microservices", note: "Service-oriented architecture" },
@@ -192,7 +192,7 @@ export const skillNamespaces: SkillNamespace[] = [
     id: "ai",
     label: "ai-rag",
     title: "AI & retrieval",
-    color: "#a78bfa",
+    color: "#e9e2d4",
     skills: [
       { name: "RAG pipelines", note: "In production at OCP Solutions" },
       { name: "LLM integration", note: "vLLM · Gemini AI" },
@@ -209,7 +209,7 @@ export const skillNamespaces: SkillNamespace[] = [
     id: "frontend",
     label: "frontend",
     title: "Frontend",
-    color: "#7dd3fc",
+    color: "#e9e2d4",
     skills: [
       { name: "React", note: "This site" },
       { name: "Vue.js", note: "StockMaster" },
@@ -223,7 +223,7 @@ export const skillNamespaces: SkillNamespace[] = [
     id: "data",
     label: "data-infra",
     title: "Data & infrastructure",
-    color: "#fcd34d",
+    color: "#e9e2d4",
     skills: [
       { name: "PostgreSQL", note: "Incubation platform" },
       { name: "MySQL", note: "StockMaster" },

@@ -74,7 +74,7 @@ export function Pipeline() {
             <>
               The flagship:
               <br />
-              <em className="text-tracks pr-2">a RAG platform in production.</em>
+              <em className="text-signal pr-2">a RAG platform in production.</em>
             </>
           }
           lead={
@@ -88,13 +88,13 @@ export function Pipeline() {
 
       <div ref={trackRef} className="relative" style={{ height: `${100 + STEPS.length * 55}vh` }}>
         <div className="sticky top-0 flex h-[100svh] items-center pt-14">
-          <div className="mx-auto grid w-full max-w-[1320px] grid-cols-1 items-center gap-4 px-5 sm:px-8 lg:grid-cols-[210px_minmax(0,1fr)_270px] lg:gap-8 xl:pl-28 xl:pr-12">
+          <div className="stage grid grid-cols-1 items-center gap-4 lg:grid-cols-[210px_minmax(0,1fr)_270px] lg:gap-8">
 
             {/* step list (desktop) */}
             <ol className="relative hidden lg:block" aria-label="Pipeline stages">
               <span className="absolute bottom-3 left-[13px] top-3 w-px bg-white/10" />
               <motion.span
-                className="absolute left-[13px] top-3 w-px origin-top bg-spring"
+                className="absolute left-[13px] top-3 w-px origin-top bg-signal"
                 style={{ height: "calc(100% - 24px)", scaleY: scrollYProgress }}
               />
               {STEPS.map((s, i) => (
@@ -103,7 +103,7 @@ export function Pipeline() {
                     <span
                       className={cn(
                         "relative z-10 flex h-[27px] w-[27px] items-center justify-center rounded-full border font-mono text-[10px] transition",
-                        i === step ? "border-spring bg-spring text-ink" : i < step ? "border-spring/50 bg-ink text-spring" : "border-white/15 bg-ink text-white/40",
+                        i === step ? "border-signal bg-signal text-ink" : i < step ? "border-signal/50 bg-ink text-signal" : "border-white/15 bg-ink text-white/40",
                       )}
                     >
                       {String(i + 1).padStart(2, "0")}
@@ -132,7 +132,7 @@ export function Pipeline() {
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.25 }}
                 >
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-spring">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-signal">
                     {String(step + 1).padStart(2, "0")} / {String(STEPS.length).padStart(2, "0")} · {current.tech}
                   </p>
                   <h3 className="mt-2 font-display text-[30px] leading-[1.05] text-paper sm:text-[36px]">{current.title}</h3>
@@ -146,7 +146,7 @@ export function Pipeline() {
                     key={s.label}
                     onClick={() => goTo(i)}
                     aria-label={`Go to stage ${i + 1}: ${s.label}`}
-                    className={cn("h-1.5 flex-1 rounded-full transition", i <= step ? "bg-spring" : "bg-white/15")}
+                    className={cn("h-1.5 flex-1 rounded-full transition", i <= step ? "bg-signal" : "bg-white/15")}
                   />
                 ))}
               </div>
@@ -171,7 +171,7 @@ export function Pipeline() {
                 <div
                   key={layer}
                   className="flex items-center justify-between rounded-lg border border-white/[0.07] px-4 py-2.5"
-                  style={{ background: `rgba(167,139,250,${0.04 + (3 - i) * 0.025})`, marginLeft: `${i * 4}%`, marginRight: `${i * 4}%` }}
+                  style={{ background: `rgba(245,165,36,${0.04 + (3 - i) * 0.025})`, marginLeft: `${i * 4}%`, marginRight: `${i * 4}%` }}
                 >
                   <span className="text-[14px] text-paper">{layer}</span>
                   <span className="font-mono text-[10px] text-white/35">layer {4 - i}</span>
@@ -180,7 +180,7 @@ export function Pipeline() {
             </div>
           </div>
           <div className="flex flex-col justify-center">
-            <Layers className="h-6 w-6 text-neural" />
+            <Layers className="h-6 w-6 text-signal" />
             <h3 className="mt-3 font-display text-[30px] leading-tight text-paper">Bring your own model.</h3>
             <p className="mt-2 text-[15px] leading-relaxed text-dim">
               A BYOM abstraction framework of five abstract base classes makes every component swappable, so the platform stays

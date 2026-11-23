@@ -14,16 +14,16 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Geist", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ['"Instrument Serif"', "ui-serif", "Georgia", "serif"],
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ['"Inter Tight"', "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ['"JetBrains Mono"', "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
-        ink: { DEFAULT: "#06070a", 2: "#0b0d12", 3: "#11141b" },
-        paper: "#ecebe7",
-        dim: "#8b909a",
-        spring: "#a3e635",
-        neural: "#a78bfa",
+        // One mature accent (amber, the colour of classic terminal phosphor) on warm neutrals.
+        ink: { DEFAULT: "#0a0908", 2: "#121110", 3: "#1a1816" },
+        paper: "#f4f1ea",
+        dim: "#a39e94",
+        signal: { DEFAULT: "#f5a524", soft: "#ffd591", deep: "#c47f0f" },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

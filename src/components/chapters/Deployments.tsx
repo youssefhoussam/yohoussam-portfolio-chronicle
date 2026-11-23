@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Github } from "lucide-react";
-import { useState, type CSSProperties, type PointerEvent } from "react";
+import { forwardRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { ChapterHeader } from "@/components/experience/ChapterHeader";
 import { projects, type Project, type Track } from "@/data/portfolio";
 import { prefersReducedMotion } from "@/lib/navigation";
@@ -14,15 +14,10 @@ const FILTERS: { id: Track | "all"; flag: string }[] = [
   { id: "mobile", flag: "--track=mobile" },
 ];
 
-const TRACK_COLORS: Record<Track, string> = {
-  "spring-boot": "#a3e635",
-  "ai-rag": "#a78bfa",
-  web: "#7dd3fc",
-  mobile: "#5eead4",
-};
+const ACCENT = "#f5a524";
 
-function DeploymentCard({ project, index }: { project: Project; index: number }) {
-  const color = TRACK_COLORS[project.tracks[0]];
+const DeploymentCard = forwardRef<HTMLElement, { project: Project; index: number }>(function DeploymentCard({ project, index }, ref) {
+  const color = ACCENT;
   const onMove = (e: PointerEvent<HTMLElement>) => {
     if (e.pointerType !== "mouse" || prefersReducedMotion()) return;
     const el = e.currentTarget;
@@ -41,6 +36,7 @@ function DeploymentCard({ project, index }: { project: Project; index: number })
 
   return (
     <motion.article
+      ref={ref}
       layout
       data-solid
       initial={{ opacity: 0, y: 24 }}
@@ -105,7 +101,7 @@ function DeploymentCard({ project, index }: { project: Project; index: number })
       </div>
     </motion.article>
   );
-}
+});
 
 export function Deployments() {
   const [filter, setFilter] = useState<Track | "all">("all");
@@ -121,7 +117,7 @@ export function Deployments() {
             <>
               Things I&apos;ve
               <br />
-              <em className="text-tracks pr-2">shipped.</em>
+              <em className="text-signal pr-2">shipped.</em>
             </>
           }
           lead="Five deployments across Spring Boot microservices, AI retrieval, web and mobile. Filter them like a cluster."
@@ -129,7 +125,7 @@ export function Deployments() {
 
         <div className="mb-6 flex flex-col gap-3" data-solid>
           <p className="font-mono text-[12px] text-dim">
-            <span className="text-spring">$</span> yh deploy ls <span className="text-paper">{flag}</span>{" "}
+            <span className="text-signal">$</span> yh deploy ls <span className="text-paper">{flag}</span>{" "}
             <span className="text-white/30">
               · {visible.length} {visible.length === 1 ? "deployment" : "deployments"}
             </span>
@@ -142,7 +138,7 @@ export function Deployments() {
                 aria-pressed={filter === f.id}
                 className={cn(
                   "rounded-full border px-3 py-1.5 font-mono text-[11px] transition",
-                  filter === f.id ? "border-spring bg-spring text-ink" : "border-white/10 text-dim hover:border-white/25 hover:text-paper",
+                  filter === f.id ? "border-signal bg-signal text-ink" : "border-white/10 text-dim hover:border-white/25 hover:text-paper",
                 )}
               >
                 {f.flag}

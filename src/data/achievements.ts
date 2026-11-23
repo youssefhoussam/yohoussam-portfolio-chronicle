@@ -1,4 +1,5 @@
 import {
+  BookOpen,
   Bug,
   CircleDot,
   Crown,
@@ -25,6 +26,7 @@ export type AchievementId =
   | "sudo"
   | "judge"
   | "konami"
+  | "rtfm"
   | "console"
   | "full-trace";
 
@@ -46,6 +48,7 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: "terminal", title: "Shell access", description: "Opened the terminal.", hint: "Try the key above Tab.", icon: Terminal },
   { id: "sudo", title: "Root privileges", description: "Ran the one command every recruiter should know.", hint: "sudo make me a sandwich? Close.", icon: Crown },
   { id: "judge", title: "Certified judge", description: "Scored 5 or more in Spot the Hallucination.", hint: "Chapter 06 needs a judge.", icon: Gavel },
+  { id: "rtfm", title: "Read the manual", description: "Opened the guide. A rare and admirable act.", hint: "There's a guide in the top bar.", icon: BookOpen },
   { id: "konami", title: "Debug mode", description: "Entered a very old code.", hint: "↑ ↑ ↓ ↓ ← → ← → B A", icon: Bug },
   { id: "console", title: "DevTools whisperer", description: "Said hello from the browser console.", hint: "Engineers open DevTools. There's a note waiting.", icon: Wand2 },
   { id: "full-trace", title: "Full trace", description: "Followed the request all the way to 200 OK.", hint: "Scroll to the end of the trace.", icon: Route },

@@ -30,6 +30,7 @@ export interface AppState {
   pulse: number;
   terminalOpen: boolean;
   menuOpen: boolean;
+  guideOpen: boolean;
   debug: boolean;
   unlocked: AchievementId[];
   toasts: Toast[];
@@ -50,6 +51,7 @@ export const app = createStore<AppState>({
   pulse: 0,
   terminalOpen: false,
   menuOpen: false,
+  guideOpen: false,
   debug: false,
   unlocked: load<AchievementId[]>("achievements", []).filter((id) => id in ACHIEVEMENT_MAP),
   toasts: [],
@@ -75,7 +77,7 @@ export const actions = {
   },
 
   replayBoot() {
-    app.set((s) => ({ phase: "boot", bootCount: s.bootCount + 1, terminalOpen: false, menuOpen: false }));
+    app.set((s) => ({ phase: "boot", bootCount: s.bootCount + 1, terminalOpen: false, menuOpen: false, guideOpen: false }));
     window.scrollTo({ top: 0 });
   },
 
@@ -120,8 +122,17 @@ export const actions = {
 
   toggleTerminal(open?: boolean) {
     const next = open ?? !app.get().terminalOpen;
-    app.set({ terminalOpen: next, menuOpen: false });
+    app.set({ terminalOpen: next, menuOpen: false, guideOpen: false });
     if (next) actions.unlock("terminal");
+  },
+
+  toggleGuide(open?: boolean) {
+    const next = open ?? !app.get().guideOpen;
+    app.set({ guideOpen: next, menuOpen: false, terminalOpen: false });
+    if (next) {
+      save("guide-seen", true);
+      actions.unlock("rtfm");
+    }
   },
 
   setMenu(open: boolean) {

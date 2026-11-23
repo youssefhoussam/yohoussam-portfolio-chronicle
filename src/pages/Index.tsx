@@ -12,7 +12,8 @@ import { Response } from "@/components/chapters/Response";
 import { Services } from "@/components/chapters/Services";
 import { BootSequence } from "@/components/experience/BootSequence";
 import { Hud } from "@/components/experience/Hud";
-import { MobileMenu, TraceNav } from "@/components/experience/Navigation";
+import { Guide } from "@/components/experience/Guide";
+import { JourneyBar, MobileMenu, TraceNav } from "@/components/experience/Navigation";
 import { DebugOverlay, Grain, Toasts } from "@/components/experience/Overlays";
 import { SceneLayer } from "@/components/experience/SceneLayer";
 import { Terminal } from "@/components/experience/Terminal";
@@ -38,7 +39,7 @@ const Index = () => {
     <div className="relative min-h-screen overflow-x-clip bg-ink text-paper">
       <button
         onClick={() => document.getElementById("main")?.focus()}
-        className="sr-only z-[120] rounded-full bg-spring px-4 py-2 text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        className="sr-only z-[120] rounded-full bg-signal px-4 py-2 text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
       >
         Skip to content
       </button>
@@ -64,6 +65,8 @@ const Index = () => {
 
       <AnimatePresence>{phase === "boot" && <BootSequence key={`boot-${bootCount}`} />}</AnimatePresence>
       <MobileMenu />
+      <JourneyBar />
+      <Guide />
       <Terminal />
       <Toasts />
       <DebugOverlay />

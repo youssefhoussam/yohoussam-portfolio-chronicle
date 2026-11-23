@@ -10,7 +10,7 @@ export function Toasts() {
   return (
     <div
       aria-live="polite"
-      className="pointer-events-none fixed bottom-4 left-4 right-4 z-[90] flex flex-col items-start gap-2 sm:bottom-6 sm:left-6 sm:right-auto"
+      className="pointer-events-none fixed bottom-[84px] left-4 right-4 z-[90] flex flex-col items-start gap-2 sm:left-6 sm:right-auto xl:bottom-6"
     >
       <AnimatePresence initial={false}>
         {toasts.map((t) => {
@@ -28,7 +28,7 @@ export function Toasts() {
               <span
                 className={
                   achievement
-                    ? "flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-spring/15 text-spring"
+                    ? "flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-signal/15 text-signal"
                     : "flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-paper"
                 }
               >
@@ -76,7 +76,7 @@ export function DebugOverlay() {
 
   if (!debug) return null;
   return (
-    <div className="fixed right-4 top-16 z-[85] rounded-xl border border-spring/40 bg-ink/90 px-3 py-2 font-mono text-[11px] leading-relaxed text-spring shadow-2xl">
+    <div className="fixed right-4 top-16 z-[85] rounded-xl border border-signal/40 bg-ink/90 px-3 py-2 font-mono text-[11px] leading-relaxed text-signal shadow-2xl">
       <p className="text-[10px] uppercase tracking-[0.2em]">debug mode</p>
       <p className="text-paper/80">
         {fps} fps · {chunks.length} chunks · {unlocked}/{ACHIEVEMENTS.length} found

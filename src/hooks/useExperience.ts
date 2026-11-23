@@ -69,6 +69,11 @@ export function useSecrets() {
           actions.toggleTerminal();
           return;
         }
+        if (e.key === "?") {
+          e.preventDefault();
+          actions.toggleGuide();
+          return;
+        }
         konami = key === KONAMI[konami] ? konami + 1 : key === KONAMI[0] ? 1 : 0;
         if (konami === KONAMI.length) {
           konami = 0;
@@ -111,8 +116,8 @@ export function useConsoleGreeting() {
     w.youssef = api;
     console.log(
       "%cyh_%c\nHi! This portfolio is a tiny RAG system.\nType youssef.hello() to say hi, youssef.ask('…') to query it, youssef.hire() for the obvious.",
-      "font: 600 28px ui-monospace, monospace; color: #a3e635;",
-      "font: 13px ui-monospace, monospace; color: #8b909a; line-height: 1.6;",
+      "font: 600 28px ui-monospace, monospace; color: #f5a524;",
+      "font: 13px ui-monospace, monospace; color: #a39e94; line-height: 1.6;",
     );
   }, []);
 }

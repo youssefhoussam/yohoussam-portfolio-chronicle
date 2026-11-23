@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 
 const N = 48;
-const CHUNK_COLORS = ["#a3e635", "#a78bfa", "#5eead4", "#7dd3fc", "#f0abfc", "#fcd34d"];
-const PAPER = "#ecebe7";
-const LIME = "#a3e635";
-const VIOLET = "#a78bfa";
+// Chunks are told apart by lightness, not hue; amber marks what the pipeline selects.
+const CHUNK_COLORS = ["#f4f1ea", "#cfc8bb", "#a9a397", "#e2dccf", "#bab3a6", "#958f84"];
+const PAPER = "#f4f1ea";
+const LIME = "#f5a524";
+const VIOLET = "#f4f1ea";
 
 function seeded(seed: number) {
   let s = seed;

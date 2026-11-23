@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 
 const STATUS: Record<(typeof releases)[number]["status"], string> = {
   shipped: "border-white/15 text-dim",
-  "in progress": "border-spring/40 bg-spring/10 text-spring",
-  next: "border-neural/40 bg-neural/10 text-neural",
+  "in progress": "border-signal/40 bg-signal/10 text-signal",
+  next: "border-signal/40 bg-signal/10 text-signal",
 };
 
 export function Releases() {
@@ -21,14 +21,14 @@ export function Releases() {
             <>
               Release notes
               <br />
-              <em className="text-tracks pr-2">for what&apos;s next.</em>
+              <em className="text-signal pr-2">for what&apos;s next.</em>
             </>
           }
           lead="The roadmap, written as a changelog: high-impact roles where backend systems, AI platforms and thoughtful product work meet."
         />
 
         <ol className="relative mx-auto max-w-4xl">
-          <span className="absolute bottom-6 left-[7px] top-6 w-px bg-gradient-to-b from-white/5 via-white/15 to-neural/50 sm:left-[123px]" />
+          <span className="absolute bottom-6 left-[7px] top-6 w-px bg-gradient-to-b from-white/5 via-white/15 to-signal/50 sm:left-[123px]" />
           {releases.map((r, i) => (
             <motion.li
               key={r.version}
@@ -39,12 +39,12 @@ export function Releases() {
               className="relative grid gap-3 pb-10 pl-8 last:pb-0 sm:grid-cols-[108px_minmax(0,1fr)] sm:gap-8 sm:pl-0"
             >
               <div className="font-mono text-[13px] sm:pt-1 sm:text-right">
-                <span className={r.status === "next" ? "text-neural" : "text-paper"}>{r.version}</span>
+                <span className={r.status === "next" ? "text-signal" : "text-paper"}>{r.version}</span>
               </div>
               <span
                 className={cn(
                   "absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 bg-ink sm:left-[116px]",
-                  r.status === "next" ? "border-neural shadow-[0_0_14px_rgba(167,139,250,0.6)]" : r.status === "shipped" ? "border-white/40" : "border-spring",
+                  r.status === "next" ? "border-signal shadow-[0_0_14px_rgba(245,165,36,0.6)]" : r.status === "shipped" ? "border-white/40" : "border-signal",
                 )}
               />
               <div data-solid className="sm:pl-6">
@@ -56,7 +56,7 @@ export function Releases() {
                 <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
                   {r.items.map((item) => (
                     <li key={item} className="font-mono text-[12px] text-paper/75">
-                      <span className={r.status === "next" ? "text-neural" : "text-spring"}>+</span> {item}
+                      <span className={r.status === "next" ? "text-signal" : "text-signal"}>+</span> {item}
                     </li>
                   ))}
                 </ul>

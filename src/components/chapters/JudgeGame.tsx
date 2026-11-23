@@ -73,7 +73,7 @@ export function JudgeGame() {
             <>
               Your turn:
               <br />
-              <em className="text-tracks pr-2">spot the hallucination.</em>
+              <em className="text-signal pr-2">spot the hallucination.</em>
             </>
           }
           lead="I built an LLM-as-a-Judge to catch made-up answers. Here, you're the judge. A deliberately unreliable model wrote six claims about me. PASS the grounded ones, FAIL the hallucinations."
@@ -82,7 +82,7 @@ export function JudgeGame() {
         <div data-solid className="panel mx-auto max-w-3xl overflow-hidden">
           <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-3 font-mono text-[11px] text-dim">
             <span className="inline-flex items-center gap-2">
-              <Gavel className="h-3.5 w-3.5 text-spring" /> judge-console
+              <Gavel className="h-3.5 w-3.5 text-signal" /> judge-console
             </span>
             {phase === "play" && (
               <span className="flex items-center gap-3">
@@ -92,7 +92,7 @@ export function JudgeGame() {
                       key={i}
                       className={cn(
                         "h-1.5 w-5 rounded-full",
-                        i < answers.length ? (answers[i] ? "bg-spring" : "bg-rose-400") : i === round ? "bg-white/40" : "bg-white/10",
+                        i < answers.length ? (answers[i] ? "bg-signal" : "bg-rose-400") : i === round ? "bg-white/40" : "bg-white/10",
                       )}
                     />
                   ))}
@@ -132,7 +132,7 @@ export function JudgeGame() {
                   <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40">
                     round {round + 1} / {ROUNDS} · model output
                   </p>
-                  <blockquote className="mt-4 border-l-2 border-neural/60 pl-5 text-[21px] leading-snug text-paper sm:text-[24px]">
+                  <blockquote className="mt-4 border-l-2 border-signal/60 pl-5 text-[21px] leading-snug text-paper sm:text-[24px]">
                     &ldquo;{claim.claim}&rdquo;
                   </blockquote>
 
@@ -140,10 +140,10 @@ export function JudgeGame() {
                     <div className="mt-8 grid gap-3 sm:grid-cols-2">
                       <button
                         onClick={() => judge(true)}
-                        className="group flex items-center justify-between rounded-2xl border border-spring/30 bg-spring/[0.06] px-5 py-4 text-left transition hover:border-spring hover:bg-spring/[0.12]"
+                        className="group flex items-center justify-between rounded-2xl border border-signal/30 bg-signal/[0.06] px-5 py-4 text-left transition hover:border-signal hover:bg-signal/[0.12]"
                       >
                         <span>
-                          <span className="block font-mono text-[13px] font-semibold tracking-[0.14em] text-spring">PASS</span>
+                          <span className="block font-mono text-[13px] font-semibold tracking-[0.14em] text-signal">PASS</span>
                           <span className="block text-[13px] text-dim">grounded in the facts</span>
                         </span>
                         <span className="kbd">P</span>
@@ -164,10 +164,10 @@ export function JudgeGame() {
                       <div
                         className={cn(
                           "rounded-2xl border p-5",
-                          correct ? "border-spring/40 bg-spring/[0.07]" : "border-rose-400/40 bg-rose-400/[0.07]",
+                          correct ? "border-signal/40 bg-signal/[0.07]" : "border-rose-400/40 bg-rose-400/[0.07]",
                         )}
                       >
-                        <p className={cn("flex items-center gap-2 font-mono text-[12px] font-semibold uppercase tracking-[0.16em]", correct ? "text-spring" : "text-rose-300")}>
+                        <p className={cn("flex items-center gap-2 font-mono text-[12px] font-semibold uppercase tracking-[0.16em]", correct ? "text-signal" : "text-rose-300")}>
                           {correct ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
                           {correct ? "correct verdict" : "the model fooled you"}
                         </p>
@@ -194,7 +194,7 @@ export function JudgeGame() {
                     {score}
                     <span className="text-white/25">/{ROUNDS}</span>
                   </p>
-                  <h3 className={cn("mt-3 font-display text-[32px] leading-tight", score >= 5 ? "text-spring" : "text-paper")}>{rank.title}</h3>
+                  <h3 className={cn("mt-3 font-display text-[32px] leading-tight", score >= 5 ? "text-signal" : "text-paper")}>{rank.title}</h3>
                   <p className="mt-2 max-w-lg text-[15px] text-dim">{rank.note}</p>
                   <div className="mt-7 flex flex-wrap gap-2">
                     <button onClick={start} className="btn-ghost">

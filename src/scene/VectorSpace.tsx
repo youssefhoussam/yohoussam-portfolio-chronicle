@@ -20,6 +20,7 @@ uniform float uProj;
 uniform float uFocus;
 uniform float uMotion;
 uniform vec3 uColors[${PALETTE.length}];
+uniform vec3 uAccent;
 `;
 
 const DUST_VERT = /* glsl */ `
@@ -41,7 +42,7 @@ void main() {
   float focus = (uFocus >= 0.0 && abs(aCluster - uFocus) < 0.5) ? 1.0 : 0.0;
   float depth = max(-mv.z, 0.001);
   gl_PointSize = min(aSize * (1.0 + focus * 0.7) * uProj / depth, 48.0);
-  vColor = uColors[int(aCluster + 0.5)];
+  vColor = mix(uColors[int(aCluster + 0.5)], uAccent, focus * 0.75);
   float twinkle = 0.7 + 0.3 * sin(uTime * 1.7 + aSeed * 40.0);
   vAlpha = (0.36 + focus * 0.45) * twinkle * smoothstep(1.0, 4.0, depth);
 }`;
@@ -81,6 +82,7 @@ void main() {
 }`;
 
 const STAR_FRAG = /* glsl */ `
+uniform vec3 uAccent;
 varying vec3 vColor;
 varying float vHi;
 varying float vAlpha;
@@ -92,7 +94,8 @@ void main() {
   float ring = smoothstep(0.035, 0.0, abs(d - 0.36)) * vHi;
   float a = (core + glow + ring * 0.9) * vAlpha;
   if (a < 0.004) discard;
-  vec3 col = mix(vColor, vec3(1.0), core * 0.55 + vHi * 0.25);
+  vec3 col = mix(vColor, uAccent, min(vHi * 1.4, 1.0));
+  col = mix(col, vec3(1.0), core * 0.45);
   gl_FragColor = vec4(col, min(a, 1.0));
 }`;
 
@@ -198,6 +201,7 @@ const commonUniforms = () => ({
   uFocus: { value: -1 },
   uMotion: { value: 1 },
   uColors: { value: palette },
+  uAccent: { value: toVec3("#f5a524") },
 });
 
 function Space() {
@@ -255,15 +259,15 @@ function Space() {
       uProj: { value: 800 },
       uScale: { value: 1.1 },
       uOpacity: { value: 0 },
-      uColor: { value: toVec3("#a3e635") },
+      uColor: { value: toVec3("#f5a524") },
     });
-    const lineMat = shader(LINE_VERT, LINE_FRAG, { uColor: { value: toVec3("#d9f99d") }, uOpacity: { value: 0 } });
+    const lineMat = shader(LINE_VERT, LINE_FRAG, { uColor: { value: toVec3("#ffd591") }, uOpacity: { value: 0 } });
     const edgeMat = shader(EDGE_VERT, EDGE_FRAG, { uExpand: { value: 0.02 }, uColors: { value: palette }, uOpacity: { value: 0.16 } });
     const outlierMat = shader(OUTLIER_VERT, OUTLIER_FRAG, {
       uTime: { value: 0 },
       uProj: { value: 800 },
       uExpand: { value: 0.02 },
-      uColor: { value: toVec3("#fb7185") },
+      uColor: { value: toVec3("#ffffff") },
     });
     return { dustMat, starMat, edgeMat, probeMat, lineMat, outlierMat };
   }, []);
@@ -482,7 +486,7 @@ export default function VectorSpace() {
       gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }}
       camera={{ position: [-2.6, 0.5, 20], fov: 50, near: 0.1, far: 120 }}
     >
-      <color attach="background" args={["#06070a"]} />
+      <color attach="background" args={["#0a0908"]} />
       <Space />
     </Canvas>
   );

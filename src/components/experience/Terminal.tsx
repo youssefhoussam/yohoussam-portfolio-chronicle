@@ -205,7 +205,7 @@ const COMMANDS: Record<string, { help: string; hidden?: boolean; run: (args: str
         print(
           "out",
           <span>
-            <span className="text-spring">{(BANNER[i] ?? "").padEnd(18, " ")}</span>
+            <span className="text-signal">{(BANNER[i] ?? "").padEnd(18, " ")}</span>
             {info[i] ?? ""}
           </span>,
         );
@@ -247,6 +247,13 @@ const COMMANDS: Record<string, { help: string; hidden?: boolean; run: (args: str
       print("ok", `debug ${app.get().debug ? "on" : "off"}`);
     },
   },
+  guide: {
+    help: "open the usage guide",
+    run: (_, { print }) => {
+      print("ok", "→ opening the guide");
+      window.setTimeout(() => actions.toggleGuide(true), 150);
+    },
+  },
   replay: {
     help: "replay the boot sequence",
     run: (_, { close }) => {
@@ -280,9 +287,9 @@ const TONES: Record<Tone, string> = {
   in: "text-paper",
   out: "text-paper/85",
   dim: "text-dim",
-  ok: "text-spring",
+  ok: "text-signal",
   err: "text-rose-300",
-  accent: "text-neural",
+  accent: "text-signal",
 };
 
 function TerminalWindow() {
@@ -318,7 +325,7 @@ function TerminalWindow() {
     const trimmed = raw.trim();
     print("in", (
       <span>
-        <span className="text-spring">{prompt}</span> {trimmed}
+        <span className="text-signal">{prompt}</span> {trimmed}
       </span>
     ));
     if (!trimmed) return;
@@ -405,7 +412,7 @@ function TerminalWindow() {
     >
       <div className="flex items-center justify-between border-b border-white/[0.07] px-4 py-2.5">
         <span className="font-mono text-[11px] text-dim">
-          <span className="text-spring">●</span> yh-shell — ~/youssef
+          <span className="text-signal">●</span> yh-shell — ~/youssef
         </span>
         <button
           onClick={() => actions.toggleTerminal(false)}
@@ -422,7 +429,7 @@ function TerminalWindow() {
           </div>
         ))}
         <div className="flex items-center gap-2">
-          <label htmlFor="terminal-input" className="shrink-0 text-spring">
+          <label htmlFor="terminal-input" className="shrink-0 text-signal">
             {prompt}
           </label>
           <input
@@ -434,7 +441,7 @@ function TerminalWindow() {
             autoComplete="off"
             autoCapitalize="off"
             spellCheck={false}
-            className="min-w-0 flex-1 bg-transparent text-[16px] text-paper caret-spring outline-none sm:text-[12.5px]"
+            className="min-w-0 flex-1 bg-transparent text-[16px] text-paper caret-signal outline-none sm:text-[12.5px]"
           />
         </div>
       </div>

@@ -20,7 +20,7 @@ const TRACKS = [
   {
     cluster: "spring" as const,
     icon: Boxes,
-    color: "#a3e635",
+    color: "#f5a524",
     kicker: "track 01 · spring boot",
     title: "Backends that scale",
     points: [
@@ -33,7 +33,7 @@ const TRACKS = [
   {
     cluster: "rag" as const,
     icon: BrainCircuit,
-    color: "#a78bfa",
+    color: "#f5a524",
     kicker: "track 02 · ai rag",
     title: "AI that retrieves the right answer",
     points: [
@@ -66,8 +66,8 @@ function IdentityCard() {
         <div className="scanline pointer-events-none absolute inset-x-0 top-0 h-24" />
         <figcaption className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4 font-mono text-[11px] text-paper/80">
           <span>identity-service</span>
-          <span className="inline-flex items-center gap-1.5 text-spring">
-            <span className="h-1.5 w-1.5 rounded-full bg-spring" /> healthy
+          <span className="inline-flex items-center gap-1.5 text-signal">
+            <span className="h-1.5 w-1.5 rounded-full bg-signal" /> healthy
           </span>
         </figcaption>
       </div>
@@ -107,7 +107,7 @@ export function Services() {
             <>
               Two tracks.
               <br />
-              <em className="text-tracks pr-2">One engineer.</em>
+              <em className="text-signal pr-2">One engineer.</em>
             </>
           }
           lead={
@@ -146,13 +146,13 @@ export function Services() {
                 {ns ? (
                   <>
                     <p className="font-mono text-[11px] text-dim">
-                      <span className="text-spring">HTTP/1.1 200 OK</span> · {ns.skills.length} services · {latency}ms ·{" "}
-                      <span style={{ color: ns.color }}>{ns.title}</span>
+                      <span className="text-signal">HTTP/1.1 200 OK</span> · {ns.skills.length} services · {latency}ms ·{" "}
+                      <span className="text-signal">{ns.title}</span>
                     </p>
                     <ul className="mt-3 grid gap-x-6 gap-y-1.5 sm:grid-cols-2">
                       {ns.skills.map((s) => (
                         <li key={s.name} className="flex items-baseline gap-2 text-[14px]">
-                          <span className="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full" style={{ background: ns.color }} />
+                          <span className="h-1.5 w-1.5 shrink-0 translate-y-[-2px] rounded-full bg-signal" />
                           <span className="text-paper">{s.name}</span>
                           {s.note && <span className="truncate text-[12px] text-dim">· {s.note}</span>}
                         </li>

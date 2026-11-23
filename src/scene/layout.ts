@@ -30,7 +30,7 @@ export function hexToRgb(hex: string): Vec3 {
   return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
 }
 
-export const PALETTE: Vec3[] = [...CLUSTERS.map((c) => hexToRgb(c.color)), hexToRgb("#c9ccd4")];
+export const PALETTE: Vec3[] = [...CLUSTERS.map((c) => hexToRgb(c.color)), hexToRgb("#d8d1c4")];
 
 /** Knowledge chunks become stars, placed deterministically inside their cluster. */
 export function buildStars() {

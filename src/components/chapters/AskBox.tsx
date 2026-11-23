@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, CornerDownLeft, ShieldAlert, ShieldCheck, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { CHAPTER_MAP, CLUSTERS, clusterIndex } from "@/data/chapters";
+import { CHAPTER_MAP } from "@/data/chapters";
 import { personaCopy } from "@/data/personas";
 import { actions, app, useApp } from "@/lib/app";
 import { prefersReducedMotion, scrollToChapter } from "@/lib/navigation";
@@ -32,7 +32,7 @@ function Streamed({ text }: { text: string }) {
       <span className="sr-only">{text}</span>
       <span aria-hidden>
         {text.slice(0, count)}
-        {count < text.length && <span className="ml-0.5 inline-block h-[1.05em] w-[0.5ch] translate-y-[0.15em] bg-spring/80" />}
+        {count < text.length && <span className="ml-0.5 inline-block h-[1.05em] w-[0.5ch] translate-y-[0.15em] bg-signal/80" />}
       </span>
     </>
   );
@@ -45,7 +45,7 @@ function JudgeBadge({ result }: { result: Retrieval }) {
     <span
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em]",
-        pass ? "border-spring/40 bg-spring/10 text-spring" : "border-amber-300/40 bg-amber-300/10 text-amber-200",
+        pass ? "border-signal/40 bg-signal/10 text-signal" : "border-rose-300/40 bg-rose-300/10 text-rose-200",
       )}
     >
       <Icon className="h-3.5 w-3.5" />
@@ -106,14 +106,13 @@ export function AnswerCard({ result, onClose }: { result: Retrieval; onClose: ()
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">sources</p>
           <ul className="mt-2 flex flex-wrap gap-2">
             {sources.map((h) => {
-              const cluster = CLUSTERS[clusterIndex(h.chunk.cluster)];
               return (
                 <li key={h.chunk.id}>
                   <button
                     onClick={() => scrollToChapter(h.chunk.chapter)}
                     className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] py-1.5 pl-2.5 pr-3 text-[13px] text-paper/90 transition hover:border-white/25"
                   >
-                    <span className="h-2 w-2 rounded-full" style={{ background: cluster.color, boxShadow: `0 0 10px ${cluster.color}` }} />
+                    <span className="h-2 w-2 rounded-full bg-signal shadow-[0_0_10px_rgba(245,165,36,0.8)]" />
                     {h.chunk.title}
                     <span className="font-mono text-[10px] text-white/35 group-hover:text-paper/70">
                       {CHAPTER_MAP[h.chunk.chapter].label}
@@ -156,7 +155,7 @@ export function AnswerCard({ result, onClose }: { result: Retrieval; onClose: ()
                   <td className="px-3 py-1.5 text-right tabular-nums">
                     {h.cosine.toFixed(2)} <span className="text-white/30">#{h.cosineRank ?? "–"}</span>
                   </td>
-                  <td className="px-3 py-1.5 text-right tabular-nums text-spring">{h.rrf.toFixed(4)}</td>
+                  <td className="px-3 py-1.5 text-right tabular-nums text-signal">{h.rrf.toFixed(4)}</td>
                 </tr>
               ))}
             </tbody>
@@ -188,9 +187,9 @@ export function AskBox() {
     return () => window.clearInterval(id);
   }, [copy.suggestions.length]);
 
-  // Clicking a star fills the box with the chunk's title.
+  // Answers can also come from a clicked star, the guide or the terminal: keep the box in sync.
   useEffect(() => {
-    if (answer?.inspected) setQuery(answer.query);
+    if (answer) setQuery(answer.query);
   }, [answer]);
 
   const onChange = (value: string) => {
@@ -214,12 +213,12 @@ export function AskBox() {
           e.preventDefault();
           submit(query);
         }}
-        className="group relative flex items-center rounded-2xl border border-white/[0.12] bg-ink-2/80 shadow-[0_20px_70px_rgba(0,0,0,0.45)] transition focus-within:border-spring/50 focus-within:shadow-[0_0_0_4px_rgba(163,230,53,0.08),0_20px_70px_rgba(0,0,0,0.45)]"
+        className="group relative flex items-center rounded-2xl border border-white/[0.12] bg-ink-2/80 shadow-[0_20px_70px_rgba(0,0,0,0.45)] transition focus-within:border-signal/50 focus-within:shadow-[0_0_0_4px_rgba(245,165,36,0.08),0_20px_70px_rgba(0,0,0,0.45)]"
       >
         <label htmlFor="ask" className="sr-only">
           Ask the portfolio a question
         </label>
-        <span aria-hidden className="pl-4 font-mono text-[15px] text-spring">
+        <span aria-hidden className="pl-4 font-mono text-[15px] text-signal">
           ❯
         </span>
         <input
@@ -239,7 +238,7 @@ export function AskBox() {
         )}
         <button
           type="submit"
-          className="m-1.5 inline-flex items-center gap-2 rounded-xl bg-spring px-4 py-2.5 text-[14px] font-medium text-ink transition hover:bg-[#b7f25a] disabled:opacity-40"
+          className="m-1.5 inline-flex items-center gap-2 rounded-xl bg-signal px-4 py-2.5 text-[14px] font-medium text-ink transition hover:bg-[#ffb84a] disabled:opacity-40"
           disabled={!query.trim()}
         >
           Ask <CornerDownLeft className="h-4 w-4" />

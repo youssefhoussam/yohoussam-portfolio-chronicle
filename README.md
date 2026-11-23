@@ -21,8 +21,11 @@ travelling through nine "spans":
 | 08 | releases | Roadmap as release notes |
 | 09 | response | Contact, with an HTTP-request message composer |
 
-Extras: a boot sequence that adapts the site to the visitor (recruiter / engineer / curious), a terminal (press `` ` ``),
-12 hidden achievements, a Konami-code debug mode, and a note for anyone who opens DevTools.
+Extras: a boot sequence that adapts the site to the visitor (recruiter / engineer / curious), a usage guide (press `?`),
+a terminal (press `` ` `` or use "Explore by terminal" in the hero), a journey panel that always shows where you are and
+what's next, 13 hidden achievements, a Konami-code debug mode, and a note for anyone who opens DevTools.
+
+Design: one accent colour (amber, like classic terminal phosphor) on warm neutrals, with heavy Inter Tight headlines.
 
 ## Tech stack
 

@@ -41,12 +41,12 @@ function JsonField({
 }) {
   const id = `composer-${name}`;
   const shared = cn(
-    "w-full resize-none rounded-md bg-white/[0.03] px-2 py-1 font-mono text-[16px] text-amber-100 outline-none ring-1 transition placeholder:text-white/20 focus:bg-white/[0.06] sm:text-[13px]",
-    invalid ? "ring-rose-400/70" : "ring-white/[0.06] focus:ring-spring/50",
+    "w-full resize-none rounded-md bg-white/[0.03] px-2 py-1 font-mono text-[16px] text-paper outline-none ring-1 transition placeholder:text-white/20 focus:bg-white/[0.06] sm:text-[13px]",
+    invalid ? "ring-rose-400/70" : "ring-white/[0.06] focus:ring-signal/50",
   );
   return (
     <div className="flex gap-2 pl-5">
-      <label htmlFor={id} className="shrink-0 pt-1 text-neural">
+      <label htmlFor={id} className="shrink-0 pt-1 text-signal">
         &quot;{name}&quot;:
       </label>
       <div className="min-w-0 flex-1">
@@ -105,15 +105,15 @@ export function Response() {
           className="mb-12 max-w-3xl sm:mb-16"
         >
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-[0.2em] text-dim">
-            <span className="text-spring">{CHAPTER_MAP.response.index}</span>
+            <span className="text-signal">{CHAPTER_MAP.response.index}</span>
             <span className="h-px w-8 bg-white/15" />
             <span>response</span>
           </div>
-          <p className="mt-6 font-mono text-[clamp(1.1rem,2.6vw,1.6rem)] text-spring">HTTP/1.1 200 OK</p>
-          <h2 className="mt-2 font-display text-[clamp(2.8rem,7vw,6rem)] leading-[0.92] tracking-[-0.02em] text-paper">
+          <p className="mt-6 font-mono text-[clamp(1.1rem,2.6vw,1.6rem)] text-signal">HTTP/1.1 200 OK</p>
+          <h2 className="mt-2 font-display text-[clamp(2.6rem,6.4vw,5.4rem)] leading-[0.95] tracking-[-0.045em] text-paper">
             Let&apos;s build something
             <br />
-            <em className="text-tracks pr-2">that ships.</em>
+            <em className="text-signal pr-2">that ships.</em>
           </h2>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-dim sm:text-lg">
             I&apos;m looking for a full-time role in an English-first team, and I&apos;m open to relocation and remote-friendly setups. The
@@ -136,26 +136,26 @@ export function Response() {
                 label="email"
                 action={
                   <button onClick={copyEmail} className="btn-ghost h-9 px-3" aria-label="Copy the email address">
-                    {copied ? <Check className="h-4 w-4 text-spring" /> : <Copy className="h-4 w-4" />}
+                    {copied ? <Check className="h-4 w-4 text-signal" /> : <Copy className="h-4 w-4" />}
                   </button>
                 }
               >
-                <a href={`mailto:${profile.email}`} className="hover:text-spring">
+                <a href={`mailto:${profile.email}`} className="hover:text-signal">
                   {profile.email}
                 </a>
               </ContactRow>
               <ContactRow icon={<Phone className="h-4 w-4" />} label="phone">
-                <a href={profile.phoneHref} className="hover:text-spring">
+                <a href={profile.phoneHref} className="hover:text-signal">
                   {profile.phone}
                 </a>
               </ContactRow>
               <ContactRow icon={<Linkedin className="h-4 w-4" />} label="linkedin">
-                <a href={profile.linkedin} target="_blank" rel="noreferrer" className="hover:text-spring">
+                <a href={profile.linkedin} target="_blank" rel="noreferrer" className="hover:text-signal">
                   {profile.linkedinLabel}
                 </a>
               </ContactRow>
               <ContactRow icon={<Github className="h-4 w-4" />} label="github">
-                <a href={profile.github} target="_blank" rel="noreferrer" className="hover:text-spring">
+                <a href={profile.github} target="_blank" rel="noreferrer" className="hover:text-signal">
                   {profile.githubLabel}
                 </a>
               </ContactRow>
@@ -184,7 +184,7 @@ export function Response() {
             <div className="border-b border-white/[0.06] px-5 py-3 font-mono text-[11px] text-dim">compose a request</div>
             <div ref={messageRef} className="space-y-2 px-5 py-4 font-mono text-[13px] leading-relaxed">
               <p>
-                <span className="text-spring">POST</span> <span className="text-paper">/youssef/messages</span>{" "}
+                <span className="text-signal">POST</span> <span className="text-paper">/youssef/messages</span>{" "}
                 <span className="text-white/35">HTTP/1.1</span>
               </p>
               <p className="text-white/35">
@@ -212,7 +212,7 @@ export function Response() {
               </button>
               <span className="font-mono text-[11px] text-white/30">⌘/Ctrl + Enter · opens your mail app</span>
               <span className="ml-auto font-mono text-[11px]" aria-live="polite">
-                {status.code === 202 && <span className="text-spring">202 Accepted · opening your mail client…</span>}
+                {status.code === 202 && <span className="text-signal">202 Accepted · opening your mail client…</span>}
                 {status.code === 400 && <span className="text-rose-300">400 Bad Request · &quot;{status.field}&quot; is required</span>}
               </span>
             </div>

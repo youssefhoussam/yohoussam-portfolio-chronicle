@@ -7,7 +7,7 @@ import { useApp } from "@/lib/app";
 import { shortHash } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
-const MAIN = "#ecebe7";
+const MAIN = "#f4f1ea";
 const LANE0 = 15;
 const LANE1 = 43;
 
@@ -20,8 +20,8 @@ function MainGutter({ first, last, head }: { first?: boolean; last?: boolean; he
         style={{ left: LANE0 - 1, top: first ? 30 : 0, bottom: last ? "calc(100% - 30px)" : 0 }}
       />
       <span
-        className={cn("absolute h-[14px] w-[14px] rounded-full border-2", head ? "bg-spring" : "bg-ink")}
-        style={{ left: LANE0 - 7, top: 23, borderColor: head ? "#a3e635" : MAIN, boxShadow: head ? "0 0 0 6px rgba(163,230,53,0.15)" : undefined }}
+        className={cn("absolute h-[14px] w-[14px] rounded-full border-2", head ? "bg-signal" : "bg-ink")}
+        style={{ left: LANE0 - 7, top: 23, borderColor: head ? "#f5a524" : MAIN, boxShadow: head ? "0 0 0 6px rgba(245,165,36,0.15)" : undefined }}
       />
     </div>
   );
@@ -68,7 +68,7 @@ function FeatureCommit({ exp, open, onToggle, index }: { exp: Experience; open: 
       <div className="min-w-0 flex-1 pb-7 pt-4">
         <button onClick={onToggle} aria-expanded={open} className="group w-full text-left" data-solid>
           <div className="flex flex-wrap items-center gap-2 font-mono text-[11px]">
-            <span className="text-amber-200/80">{shortHash(exp.id)}</span>
+            <span className="text-white/40">{shortHash(exp.id)}</span>
             <Tag color={exp.color}>{exp.branch}</Tag>
             <span className="ml-auto text-white/35">{exp.period}</span>
           </div>
@@ -101,13 +101,13 @@ function FeatureCommit({ exp, open, onToggle, index }: { exp: Experience; open: 
                 <ul className="px-4 py-3">
                   {exp.highlights.map((h) => (
                     <li key={h} className="flex gap-3 text-paper/85">
-                      <span className="select-none text-spring">+</span>
+                      <span className="select-none text-signal">+</span>
                       <span className="font-sans text-[14px]">{h}</span>
                     </li>
                   ))}
                 </ul>
                 <div className="border-t border-white/[0.06] px-4 py-2.5 text-[11px] text-dim">
-                  <span className="text-neural">deps</span> {exp.technologies.join(" · ")}
+                  <span className="text-signal">deps</span> {exp.technologies.join(" · ")}
                 </div>
               </div>
             </motion.div>
@@ -133,7 +133,7 @@ export function Commits() {
             <>
               Experience,
               <br />
-              <em className="text-tracks pr-2">as a commit history.</em>
+              <em className="text-signal pr-2">as a commit history.</em>
             </>
           }
           lead={
@@ -146,7 +146,7 @@ export function Commits() {
         <div className="mx-auto max-w-4xl">
           <div className="mb-4 flex items-center justify-between font-mono text-[11px] text-dim">
             <span>
-              <span className="text-spring">$</span> git log --graph --career
+              <span className="text-signal">$</span> git log --graph --career
             </span>
             <button onClick={toggleAll} className="rounded-full border border-white/10 px-3 py-1 transition hover:border-white/25 hover:text-paper">
               {allOpen ? "collapse all" : "expand all"}
@@ -158,12 +158,12 @@ export function Commits() {
               <MainGutter first head />
               <div className="flex-1 pb-6 pt-4" data-solid>
                 <div className="flex flex-wrap items-center gap-2 font-mono text-[11px]">
-                  <span className="text-amber-200/80">{shortHash("head")}</span>
-                  <Tag color="#a3e635">HEAD → main</Tag>
+                  <span className="text-white/40">{shortHash("head")}</span>
+                  <Tag color="#f5a524">HEAD → main</Tag>
                   <span className="ml-auto text-white/35">now</span>
                 </div>
                 <h3 className="mt-2 font-display text-[26px] leading-tight text-paper sm:text-[30px]">
-                  Open to full-time roles · <span className="text-tracks">Spring Boot × AI RAG</span>
+                  Open to full-time roles · <span className="text-signal">Spring Boot × AI RAG</span>
                 </h3>
                 <p className="mt-1 text-[13px] text-dim">English-first teams · open to relocation · remote-friendly</p>
               </div>
@@ -177,7 +177,7 @@ export function Commits() {
               <MainGutter last />
               <div className="flex-1 pb-2 pt-4" data-solid>
                 <div className="flex flex-wrap items-center gap-2 font-mono text-[11px]">
-                  <span className="text-amber-200/80">{shortHash("init")}</span>
+                  <span className="text-white/40">{shortHash("init")}</span>
                   <Tag color={MAIN}>main</Tag>
                   <span className="ml-auto text-white/35">2021</span>
                 </div>
