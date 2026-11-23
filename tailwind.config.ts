@@ -14,10 +14,16 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Space Grotesk', 'sans-serif'],
+        sans: ["Geist", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ['"Instrument Serif"', "ui-serif", "Georgia", "serif"],
+        mono: ['"JetBrains Mono"', "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
+        ink: { DEFAULT: "#06070a", 2: "#0b0d12", 3: "#11141b" },
+        paper: "#ecebe7",
+        dim: "#8b909a",
+        spring: "#a3e635",
+        neural: "#a78bfa",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
